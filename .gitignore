@@ -8,3 +8,7 @@ node_modules/
 .pypirc
 __pycache__/
 *.py[cod]
+dist/
+.impeccable/
+.dist-offline-*/
+*.log
