@@ -1,0 +1,15 @@
+# Método e limites
+
+Licença MIT. A engine foi criada para narrativas educacionais e projetos comunitários com exemplos fictícios. A autoria do código e da documentação é deste projeto; não reutiliza imagens, calendários, bases de dados ou bibliotecas de terceiros na execução.
+
+Uma data representa um dia civil no calendário gregoriano proléptico, entre 0001-01-01 e 9999-12-31. Não representa um instante. Não há horários, UTC, fusos, locale, reforma histórica de calendário ou regras legais. O ordinal 1 corresponde ao primeiro dia do ano 1; o último é 3652059. A aritmética conta anos completos com a regra de divisibilidade por 4, exceto séculos não divisíveis por 400, e soma os dias dos meses. A operação inversa procura o ano e subtrai meses inteiros. Não usa `Date` ou `Intl`.
+
+Períodos incluem os dois extremos: `dias=fimOrdinal-inicioOrdinal+1`. Não se aproximam meses ou anos por quantidades fixas de dias. Filtros usam interseção inclusiva. O layout considera o mínimo início e o máximo fim dos eventos que passaram por todos os filtros, sem ampliar a faixa pelos limites de busca. Cada evento recebe sua própria linha, com espaçamento fixo. A posição horizontal usa ordinais, preservando as proporções reais dos intervalos. Sobreposições temporais são permitidas.
+
+A validação examina os descritores antes de acessar os campos, rejeita estruturas não JSON e aplica limites de profundidade/nós antes do schema. Objetos canônicos são reconstruídos campo a campo e ordenados sem alterar as entradas. O parser percorre a gramática JSON e mantém um conjunto de chaves decodificadas por objeto, para detectar duplicatas antes que elas possam ser sobrescritas. A contagem de bytes usa UTF-8, inclusive indentação e LF final do backup. Nenhum truncamento ou reparo silencioso é feito.
+
+A busca usa uma representação transitória NFD, sem marcas e em minúsculas. Essa equivalência serve à descoberta de conteúdo; os textos originais continuam intactos. O SVG é escrito a partir de geometria própria, com cores enumeradas e texto XML escapado. Não é um importador de SVG. O CSV usa escape RFC4180 e apóstrofo inicial nos prefixos que planilhas podem interpretar como fórmula. Esse apóstrofo pode aparecer como parte do valor; o backup JSON é o formato de preservação exata.
+
+A suíte pública `tests/engine.test.js` verifica exemplos civis conhecidos, milhares de roundtrips determinísticos, anos pequenos, bissextos de 1900/2000, extremos, schema, descritores sem execução de getters, Unicode, limites, parser estrito, filtros, geometria e exportações. Os testes públicos são independentes de dados pessoais ou serviços externos e executam com o runner nativo do Node. Eles não substituem a aceitação independente do produto.
+
+O módulo não lê nem grava arquivos, não acessa rede, não usa armazenamento global e não mantém estado entre chamadas. O aplicativo integra edição e armazenamento separadamente. Não há telemetria ou dados reais embutidos. Os limites de 1 MiB no backup e 2 MiB por exportação são salvaguardas de recurso, não promessas de quantidade útil de conteúdo. Modelos válidos podem nunca alcançar o teto de exportação.

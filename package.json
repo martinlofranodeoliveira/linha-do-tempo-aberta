@@ -1,0 +1,19 @@
+{
+  "name": "linha-do-tempo-aberta",
+  "version": "0.1.0",
+  "description": "Editor visual em português de linha do tempo com datas civis exatas, exportação vetorial passiva e dados portáteis. Estático, sem backend.",
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "test": "node --test --test-concurrency=1 tests/engine.test.js tests/storage.test.js tests/app.test.js",
+    "build": "node scripts/build.mjs"
+  },
+  "devDependencies": {
+    "fake-indexeddb": "6.2.4",
+    "jsdom": "26.1.0",
+    "prettier": "3.6.2"
+  }
+}
