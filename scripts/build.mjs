@@ -11,6 +11,8 @@ const files = [
   "src/storage.js",
   "src/example.js",
   "src/styles.css",
+  "assets/fonts/atkinson-hyperlegible-next-variable.ttf",
+  "assets/fonts/OFL-Atkinson-Hyperlegible-Next.txt",
   "LICENSE",
   "THIRD_PARTY_NOTICES.md",
 ];
@@ -21,6 +23,7 @@ const output = args.length ? resolve(args[1]) : join(root, "dist");
 // A build creates a new directory and never recursively deletes or overwrites an existing one.
 await mkdir(output, { recursive: false });
 await mkdir(join(output, "src"));
+await mkdir(join(output, "assets", "fonts"), { recursive: true });
 for (const file of files)
   await copyFile(join(root, file), join(output, file), constants.COPYFILE_EXCL);
 if (

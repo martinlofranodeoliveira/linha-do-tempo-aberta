@@ -1,3 +1,11 @@
+@font-face {
+  font-family: "Atkinson Hyperlegible Next";
+  src: url("../assets/fonts/atkinson-hyperlegible-next-variable.ttf")
+    format("truetype");
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+}
 :root {
   font-family:
     system-ui,
@@ -182,9 +190,9 @@ p + p {
   display: flex;
   align-items: center;
   gap: 32px;
-  min-height: 86px;
+  min-height: 64px;
   border-bottom: 1px solid var(--line);
-  padding: 16px clamp(20px, 4vw, 64px);
+  padding: 10px clamp(20px, 4vw, 64px);
   background: #fff;
 }
 .brand {
@@ -215,7 +223,7 @@ p + p {
 main {
   max-width: 1680px;
   margin: auto;
-  padding: 34px clamp(20px, 4vw, 64px) 40px;
+  padding: 24px clamp(20px, 4vw, 64px) 40px;
 }
 .document-heading {
   display: flex;
@@ -227,7 +235,10 @@ main {
   min-width: 0;
 }
 .document-heading h2 {
-  margin-bottom: 12px;
+  font-family: "Atkinson Hyperlegible Next", system-ui, sans-serif;
+  font-size: clamp(1.65rem, 2.7vw, 2rem);
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
 }
 .document-heading p:not(.status) {
   font-size: 0.9375rem;
@@ -243,12 +254,12 @@ main {
 .status {
   font-size: 0.8125rem;
   color: var(--muted);
-  margin-top: 14px !important;
+  margin-top: 8px !important;
   font-variant-numeric: tabular-nums;
 }
 .notice {
-  padding: 14px 16px;
-  margin-top: 20px;
+  padding: 9px 12px;
+  margin-top: 12px;
   background: #e5edff;
   color: #19346b;
   border: 1px solid #9dafd0;
@@ -256,12 +267,32 @@ main {
   font-size: 0.875rem;
   max-width: none;
 }
+.task-toolbar {
+  display: grid;
+  grid-template-columns: auto auto minmax(0, 1fr);
+  align-items: start;
+  gap: 12px;
+  margin-top: 16px;
+}
+.file-menu {
+  min-width: 0;
+  justify-self: end;
+}
+.file-menu summary,
+.filter-panel summary {
+  cursor: pointer;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  min-height: 40px;
+  padding: 10px 0;
+}
 .file-actions {
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
   align-items: center;
-  padding: 23px 0 17px;
+  justify-content: flex-end;
+  padding: 8px 0 12px;
 }
 .file-actions button {
   background: transparent;
@@ -276,21 +307,21 @@ main {
   margin: 0 4px;
 }
 .history-actions {
-  margin-left: auto;
   display: flex;
   gap: 7px;
 }
 .settings {
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
-  margin-bottom: 30px;
+  margin-bottom: 16px;
+  margin-top: 10px;
 }
 .settings summary,
 .help summary {
   cursor: pointer;
   font-size: 0.875rem;
   font-weight: 600;
-  padding: 14px 0;
+  padding: 10px 0;
 }
 .settings-grid {
   display: grid;
@@ -364,7 +395,7 @@ main {
   justify-content: space-between;
   align-items: center;
   gap: 16px;
-  margin-bottom: 18px;
+  margin-bottom: 10px;
 }
 .section-heading p {
   font-size: 0.8125rem;
@@ -386,12 +417,12 @@ main {
 }
 .filters {
   display: grid;
-  grid-template-columns: minmax(170px, 2fr) minmax(135px, 1.3fr) minmax(
-      125px,
-      1fr
-    ) minmax(125px, 1fr);
+  grid-template-columns:
+    minmax(170px, 2fr) minmax(135px, 1.3fr) minmax(125px, 1fr)
+    minmax(125px, 1fr);
   gap: 10px;
   align-items: end;
+  padding: 4px 0 10px;
 }
 .filters button {
   grid-column: 1/-1;
@@ -418,7 +449,7 @@ main {
   gap: 14px;
   flex-wrap: wrap;
   min-height: 30px;
-  margin: 16px 0 10px;
+  margin: 8px 0 8px;
   font-size: 0.75rem;
 }
 .legend > span,
@@ -465,6 +496,12 @@ main {
   max-height: 640px;
   min-height: 250px;
   scrollbar-gutter: stable;
+  overscroll-behavior-x: contain;
+}
+.scroll-hint {
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-bottom: 8px;
 }
 #timeline {
   width: 100%;
@@ -476,9 +513,18 @@ main {
   height: auto;
   max-width: none;
 }
-#timeline[data-zoom="1.5"] { width: 150%; min-width: 1500px; }
-#timeline[data-zoom="2"] { width: 200%; min-width: 2000px; }
-#timeline[data-zoom="3"] { width: 300%; min-width: 3000px; }
+#timeline[data-zoom="1.5"] {
+  width: 150%;
+  min-width: 1500px;
+}
+#timeline[data-zoom="2"] {
+  width: 200%;
+  min-width: 2000px;
+}
+#timeline[data-zoom="3"] {
+  width: 300%;
+  min-width: 3000px;
+}
 .diagram-help {
   font-size: 0.75rem;
   line-height: 1.6;
@@ -699,7 +745,7 @@ footer {
 @media (max-width: 860px) {
   .app-header {
     gap: 18px;
-    padding: 16px 20px;
+    padding: 10px 20px;
     flex-wrap: wrap;
   }
   .app-header h1 {
@@ -749,7 +795,7 @@ footer {
     max-height: 500px;
   }
   main {
-    padding-top: 26px;
+    padding-top: 20px;
   }
 }
 @media (max-width: 540px) {
@@ -774,7 +820,7 @@ footer {
     max-width: none;
     flex-direction: row;
     flex-wrap: wrap;
-    margin-top: 20px;
+    margin-top: 12px;
   }
   .document-actions button {
     flex: 1 1 150px;
@@ -782,9 +828,22 @@ footer {
   .document-heading h2 {
     font-size: 1.75rem;
   }
+  .task-toolbar {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 8px;
+    margin-top: 12px;
+  }
+  .task-toolbar > button {
+    justify-self: start;
+  }
+  .file-menu {
+    grid-column: 1/-1;
+    justify-self: stretch;
+  }
   .file-actions {
     gap: 7px;
-    padding: 20px 0 14px;
+    padding: 4px 0 10px;
+    justify-content: flex-start;
   }
   .file-actions button {
     font-size: 0.75rem;
@@ -795,8 +854,16 @@ footer {
     display: none;
   }
   .history-actions {
-    width: 100%;
-    margin-top: 5px;
+    align-self: start;
+  }
+  .history-actions button {
+    padding-inline: 10px;
+  }
+  .settings {
+    margin-top: 0;
+  }
+  .notice {
+    font-size: 0.8125rem;
   }
   .filters {
     grid-template-columns: 1fr 1fr;
@@ -884,7 +951,9 @@ footer {
   }
   .app-header,
   .file-actions,
+  .task-toolbar,
   .filters,
+  .filter-panel,
   .settings,
   .editor,
   .help,
@@ -924,5 +993,8 @@ footer {
   }
   .diagram-help {
     color: #000;
+  }
+  .scroll-hint {
+    display: none;
   }
 }
